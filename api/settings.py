@@ -26,7 +26,7 @@ SECRET_KEY = 'dt$t86vhi=&dz9lyolv97ub9mh@*8oz%2g*q42layun8d-y(o-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'lambojonr.pythonanywhere.com']
 
 
 # Application definition
@@ -38,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest',
-    'rest_framework',
     'oauth2_provider',
+    'corsheaders',
+    'rest_framework',
+    'rest',   
 ]
 
 MIDDLEWARE = [
@@ -48,9 +49,12 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # 'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
+
 ]
 
 ROOT_URLCONF = 'api.urls'
@@ -106,7 +110,7 @@ REST_FRAMEWORK = {
 
 JSON_API_FORMAT_KEYS = 'underscore'
 JSON_API_PLURALIZE_TYPES = True
-
+CORS_ORIGIN_ALLOW_ALL = True
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
